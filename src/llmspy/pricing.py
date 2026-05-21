@@ -85,6 +85,18 @@ def apply_pricing(call: ParsedCall, storage: Storage | None = None) -> ParsedCal
         call.estimated_tokens = True
     pricing = lookup_pricing(call.provider, call.model, storage)
     if not pricing:
+        usage = call.raw_response.get("usage", {}) if isinstance(call.raw_response, dict) else {}
+        if isinstance(usage, dict) and usage.get("cost") is not None:
+            call.total_cost_usd = round(float(usage["cost"]), 8)
+            cost_details = usage.get("cost_details") or {}
+            if isinstance(cost_details, dict):
+                call.input_cost_usd = _optional_float(
+                    cost_details.get("upstream_inference_prompt_cost")
+                )
+                call.output_cost_usd = _optional_float(
+                    cost_details.get("upstream_inference_completions_cost")
+                )
+            return call
         call.input_cost_usd = None
         call.output_cost_usd = None
         call.total_cost_usd = None
@@ -95,6 +107,10 @@ def apply_pricing(call: ParsedCall, storage: Storage | None = None) -> ParsedCal
     )
     call.total_cost_usd = round(call.input_cost_usd + call.output_cost_usd, 8)
     return call
+
+
+def _optional_float(value) -> float | None:
+    return round(float(value), 8) if value is not None else None
 
 
 def update_pricing(storage: Storage, url: str | None = None) -> tuple[bool, str]:

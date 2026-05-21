@@ -25,3 +25,26 @@ def test_openai_compatible_known_openai_model_pricing():
     )
     priced = apply_pricing(call)
     assert priced.total_cost_usd is not None
+
+
+def test_provider_reported_cost_is_used_when_pricing_unknown():
+    call = ParsedCall(
+        provider="openai-compatible",
+        model="deepseek/deepseek-v4-flash",
+        prompt_tokens=10,
+        completion_tokens=25,
+        total_tokens=35,
+        raw_response={
+            "usage": {
+                "cost": 0.000008316,
+                "cost_details": {
+                    "upstream_inference_prompt_cost": 0.0000014,
+                    "upstream_inference_completions_cost": 0.000007,
+                },
+            }
+        },
+    )
+    priced = apply_pricing(call)
+    assert priced.total_cost_usd == 0.00000832
+    assert priced.input_cost_usd == 0.0000014
+    assert priced.output_cost_usd == 0.000007

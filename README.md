@@ -12,7 +12,7 @@ Like Charles Proxy, but for AI apps.
 
 No cloud account. No telemetry. No SDK instrumentation. Data stays in local SQLite.
 
-> Demo GIF placeholder: `docs/assets/demo.gif`
+![llm-spy demo: zero API key local provider flow](docs/assets/demo.gif)
 
 ## Try It Without An API Key
 
