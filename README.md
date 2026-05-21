@@ -1,18 +1,27 @@
-# llm-spy
+# llm-spy 🔍
 
 [![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-2f6f4e.svg)](pyproject.toml)
+[![PyPI version](https://badge.fury.io/py/llm-spy.svg)](https://pypi.org/project/llm-spy/)
 [![Local first](https://img.shields.io/badge/local--first-no%20telemetry-1f7a4d.svg)](README.md)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-**See every LLM call your app makes. Zero config. Stays local.**
+**You're building an AI app. You have no idea what it's actually sending to the model.**
 
-llm-spy is a local-first LLM API inspector for developers. Run your app through a standard HTTP/HTTPS proxy and llm-spy shows LLM requests, responses, latency, token usage, estimated cost, and safety warnings in your terminal and local dashboard.
+What's in the system prompt? What's burning tokens? What's this costing per call?
+
+Langfuse needs Docker. LangSmith needs SDK changes. You need answers in 10 seconds.
+
+```bash
+pip install llm-spy && llm-spy start
+```
+
+![llm-spy demo: zero API key local provider flow](docs/assets/demo.gif)
+
+That's it. Every LLM call your app makes: live, in your terminal, locally.
 
 Like Charles Proxy, but for AI apps.
 
 No cloud account. No telemetry. No SDK instrumentation. Data stays in local SQLite.
-
-![llm-spy demo: zero API key local provider flow](docs/assets/demo.gif)
 
 ## Try It Without An API Key
 

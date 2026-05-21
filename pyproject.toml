@@ -58,6 +58,8 @@ include = [
   "/CHANGELOG.md",
   "/CODE_OF_CONDUCT.md",
   "/USERS.md",
+  "/AGENTS.md",
+  "/CLAUDE.md",
   "/.env.example",
 ]
 
