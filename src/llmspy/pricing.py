@@ -9,6 +9,9 @@ from llmspy.models import ParsedCall, PricingEntry
 from llmspy.storage import Storage
 from llmspy.utils import estimate_tokens
 
+# Costs are USD per 1,000 input/output tokens. Keep this table conservative:
+# only add entries with public pricing sources, and prefer "unknown pricing"
+# over stale or guessed costs.
 BUNDLED_PRICING: dict[tuple[str, str], tuple[float, float]] = {
     ("openai", "gpt-4o"): (0.005, 0.015),
     ("openai", "gpt-4o-mini"): (0.00015, 0.0006),
@@ -87,6 +90,8 @@ def apply_pricing(call: ParsedCall, storage: Storage | None = None) -> ParsedCal
     if not pricing:
         usage = call.raw_response.get("usage", {}) if isinstance(call.raw_response, dict) else {}
         if isinstance(usage, dict) and usage.get("cost") is not None:
+            # Some gateways, including OpenRouter-compatible responses, return
+            # an exact upstream cost. Prefer that over bundled estimates.
             call.total_cost_usd = round(float(usage["cost"]), 8)
             cost_details = usage.get("cost_details") or {}
             if isinstance(cost_details, dict):
