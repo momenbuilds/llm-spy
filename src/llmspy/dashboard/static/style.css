@@ -1,0 +1,22 @@
+:root { color-scheme: light; --ink:#172018; --muted:#667067; --line:#dbe7da; --paper:#fbfaf3; --card:#ffffff; --accent:#1f7a4d; --warn:#a45b13; }
+* { box-sizing: border-box; }
+body { margin:0; font-family: ui-serif, Georgia, Cambria, serif; color:var(--ink); background: radial-gradient(circle at top left,#e7f5df,transparent 35%), linear-gradient(135deg,#fbfaf3,#eef6ef); }
+nav { display:flex; gap:1rem; align-items:center; padding:1rem 1.5rem; border-bottom:1px solid var(--line); background:rgba(255,255,255,.78); position:sticky; top:0; backdrop-filter: blur(10px); }
+nav a { color:var(--ink); text-decoration:none; font-weight:700; }
+nav span { margin-left:auto; color:var(--muted); font-size:.9rem; }
+main { max-width:1100px; margin:0 auto; padding:2rem 1.25rem; }
+.hero { padding:3rem; border:1px solid var(--line); border-radius:28px; background:linear-gradient(135deg,#fff,#f2faee); box-shadow:0 18px 60px rgba(23,32,24,.08); }
+.hero h1 { font-size:clamp(2.5rem,8vw,5rem); line-height:.95; margin:0 0 1rem; letter-spacing:-.06em; }
+.hero p { font-size:1.25rem; color:var(--muted); }
+.cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:1rem; margin:1.5rem 0; }
+.cards div { background:var(--card); border:1px solid var(--line); border-radius:18px; padding:1.25rem; }
+.cards strong { display:block; font-size:1.8rem; }
+.cards span, .empty { color:var(--muted); }
+table { width:100%; border-collapse:collapse; background:var(--card); border:1px solid var(--line); border-radius:16px; overflow:hidden; }
+th, td { text-align:left; padding:.8rem; border-bottom:1px solid var(--line); vertical-align:top; }
+tr:hover td { background:#f3faf1; cursor:pointer; }
+pre { white-space:pre-wrap; background:#102017; color:#e8f5df; padding:1rem; border-radius:14px; overflow:auto; }
+input, button { padding:.7rem .9rem; border:1px solid var(--line); border-radius:999px; margin:.25rem; }
+button { background:var(--accent); color:white; border-color:var(--accent); cursor:pointer; }
+.ok { color:var(--accent); font-weight:700; }
+@media (max-width:700px){ nav{flex-wrap:wrap}.hero{padding:1.5rem} table{font-size:.85rem} }

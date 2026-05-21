@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Diff</h1>
+<form><input name="call_a" value="{{ call_a }}" placeholder="Call A"><input name="call_b" value="{{ call_b }}" placeholder="Call B"><button>Compare</button></form>
+{% if diff %}<table><tr><th>Field</th><th>A</th><th>B</th></tr>{% for field, values in diff.items() %}<tr><td>{{ field }}</td><td><pre>{{ values.a }}</pre></td><td><pre>{{ values.b }}</pre></td></tr>{% endfor %}</table>{% endif %}
+{% endblock %}

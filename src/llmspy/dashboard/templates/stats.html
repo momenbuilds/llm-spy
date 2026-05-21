@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Cost analytics</h1>
+<div class="cards">
+  <div><strong>${{ "%.4f"|format(stats.total_cost) }}</strong><span>total cost</span></div>
+  <div><strong>{{ stats.pii_warnings }}</strong><span>PII warnings</span></div>
+  <div><strong>{{ stats.injection_warnings }}</strong><span>injection warnings</span></div>
+</div>
+<h2>Providers</h2><pre>{{ stats.providers }}</pre>
+<h2>Models</h2><pre>{{ stats.models }}</pre>
+{% endblock %}

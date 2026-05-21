@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Calls</h1>
+<form><input name="search" value="{{ search }}" placeholder="Search prompts, responses, provider, model"><button>Search</button></form>
+{% if not calls %}<p class="empty">No calls found.</p>{% endif %}
+<table>
+  <tr><th>Time</th><th>Provider</th><th>Model</th><th>Latency</th><th>Cost</th><th>Safety</th></tr>
+  {% for call in calls %}
+  <tr onclick="location.href='/calls/{{ call.id }}'">
+    <td>{{ call.timestamp }}</td><td>{{ call.provider }}</td><td>{{ call.model or "" }}</td><td>{{ call.latency_ms or "" }}ms</td><td>{{ call.total_cost_usd if call.total_cost_usd is not none else "unknown" }}</td><td>{{ "PII " if call.has_pii_warning else "" }}{{ "Injection" if call.has_injection_warning else "" }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+{% if not call %}<p class="empty">Call not found.</p>{% else %}
+<h1>{{ call.provider }} · {{ call.model or "unknown model" }}</h1>
+<p>{{ call.endpoint }} · {{ call.status_code }} · {{ call.latency_ms }}ms · {{ call.total_cost_usd if call.total_cost_usd is not none else "unknown pricing" }}</p>
+<h2>Messages</h2><pre>{{ call.messages }}</pre><button onclick="copyPrevious(this)">Copy</button>
+<h2>Response</h2><pre>{{ call.response_content }}</pre><button onclick="copyPrevious(this)">Copy</button>
+<h2>Raw request</h2><pre>{{ call.raw_request }}</pre>
+<h2>Raw response</h2><pre>{{ call.raw_response }}</pre>
+{% endif %}
+{% endblock %}

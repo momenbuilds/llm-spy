@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Sessions</h1>
+{% if not sessions %}<p class="empty">No sessions yet.</p>{% endif %}
+<table><tr><th>ID</th><th>Started</th><th>Ended</th><th>Label</th></tr>
+{% for s in sessions %}<tr><td>{{ s.id }}</td><td>{{ s.started_at }}</td><td>{{ s.ended_at or "" }}</td><td>{{ s.label or "" }}</td></tr>{% endfor %}
+</table>
+{% endblock %}

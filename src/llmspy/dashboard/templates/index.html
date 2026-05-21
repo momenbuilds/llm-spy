@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero">
+  <h1>See every LLM call your app makes.</h1>
+  <p>Zero config. Stays local. Like Charles Proxy, but for AI apps.</p>
+</section>
+<div class="cards">
+  <div><strong>{{ stats.total_calls }}</strong><span>calls</span></div>
+  <div><strong>${{ "%.4f"|format(stats.total_cost) }}</strong><span>estimated cost</span></div>
+  <div><strong>{{ stats.avg_latency }}ms</strong><span>avg latency</span></div>
+  <div><strong>{{ stats.total_tokens }}</strong><span>tokens</span></div>
+</div>
+{% if stats.total_calls == 0 %}<p class="empty">No calls yet. Start the proxy, then run your app with HTTPS_PROXY=http://localhost:8080.</p>{% endif %}
+{% endblock %}

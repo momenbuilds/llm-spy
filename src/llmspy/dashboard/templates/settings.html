@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Settings</h1>
+<p>Settings are stored locally in SQLite. No cloud account, no sync, no telemetry.</p>
+{% if saved %}<p class="ok">Saved.</p>{% endif %}
+<form method="post"><label>Daily budget USD <input name="daily" value="{{ daily or "" }}"></label><button>Save</button></form>
+{% endblock %}
