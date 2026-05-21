@@ -241,6 +241,12 @@ Suggested GitHub topics: `llm`, `openai`, `anthropic`, `developer-tools`, `debug
 
 Suggested GitHub description: “Zero-config LLM call inspector. See every API call your AI app makes.”
 
+## Support
+
+If llm-spy helps you debug faster, you can support development here:
+
+[Donate via PayPal](https://www.paypal.com/paypalme/mxcenterprise)
+
 ## Demo Recording
 
 See [docs/demo_recording.md](docs/demo_recording.md) for VHS and terminalizer instructions.
