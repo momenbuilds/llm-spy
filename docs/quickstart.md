@@ -57,10 +57,23 @@ Run your app through it:
 HTTPS_PROXY=http://localhost:8080 HTTP_PROXY=http://localhost:8080 python app.py
 ```
 
+OpenAI-compatible FastAPI example without an API key:
+
+```bash
+python examples/fake_openai_provider.py
+llm-spy start --port 8080
+env -u NO_PROXY -u no_proxy HTTP_PROXY=http://localhost:8080 \
+  uvicorn examples.fastapi_app_example:app --reload --port 8001
+```
+
+Then call `http://127.0.0.1:8001/ask` and inspect `llm-spy history` or
+`llm-spy dashboard`. See [FastAPI Guide](guides/fastapi.md) for the full
+walkthrough.
+
 OpenAI example:
 
 ```bash
-OPENAI_API_KEY=... HTTPS_PROXY=http://localhost:8080 python examples/openai_example.py
+OPENAI_API_KEY=*** HTTPS_PROXY=http://localhost:8080 python examples/openai_example.py
 ```
 
 Anthropic example:
